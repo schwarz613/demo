@@ -18,11 +18,8 @@ import software.amazon.awssdk.services.rekognition.model.*;
 @RequestMapping("/face-liveness")
 public class FaceLivenessController {
 	
-	@Value("${AWS_ACCESS_KEY_ID}")
-	private String accessKey;
-
-	@Value("${AWS_SECRET_ACCESS_KEY}")
-	private String secretKey;
+	private final String accessKey = System.getenv("AWS_ACCESS_KEY_ID");
+	private final String secretKey = System.getenv("AWS_SECRET_ACCESS_KEY");
 
     private final RekognitionClient rekognition = RekognitionClient.builder()
             .region(Region.US_EAST_1)                          // your region
