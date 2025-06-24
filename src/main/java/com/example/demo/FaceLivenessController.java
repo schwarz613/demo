@@ -20,6 +20,18 @@ public class FaceLivenessController {
 	
 	private final String accessKey = System.getenv("AWS_ACCESS_KEY_ID");
 	private final String secretKey = System.getenv("AWS_SECRET_ACCESS_KEY");
+	
+	public FaceLivenessController() {
+		System.out.println("Access Key: " + accessKey);
+		System.out.println("Secret Key: " + secretKey);
+
+		if (accessKey == null || accessKey.isBlank()) {
+			throw new RuntimeException("AWS_ACCESS_KEY_ID is missing");
+		}
+		if (secretKey == null || secretKey.isBlank()) {
+			throw new RuntimeException("AWS_SECRET_ACCESS_KEY is missing");
+		}
+	}
 
     private final RekognitionClient rekognition = RekognitionClient.builder()
             .region(Region.US_EAST_1)                          // your region
