@@ -37,7 +37,7 @@ public class FaceLivenessController {
     public ResponseEntity<Map<String, String>> createSession() {
         try {
             // Replace with your actual bucket name and (optional) prefix
-            String bucketName    = "bucketliveness0731";
+            String bucketName    = "tempbucket559955";
             String keyPrefix     = "face-liveness-session/";
 
             // Build the output config with required bucket (and prefix)
