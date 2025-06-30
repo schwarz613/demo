@@ -82,10 +82,10 @@ public class FaceLivenessController {
             GetFaceLivenessSessionResultsResponse response = rekognition.getFaceLivenessSessionResults(request);
 
             Map<String, Object> result = new HashMap<>();
-            System.out.println(result);
             result.put("status", response.statusAsString());
             result.put("confidence", response.confidence());
             result.put("isLive", response.confidence() != null && response.confidence() > 95);
+	    System.out.println(result);
 
             return ResponseEntity.ok(result);
         } catch (Exception e) {
