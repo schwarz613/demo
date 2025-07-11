@@ -77,7 +77,7 @@ public class FaceLivenessController {
         try {
             GetFaceLivenessSessionResultsRequest request = GetFaceLivenessSessionResultsRequest.builder()
                     .sessionId(sessionId)
-		    .auditImagesLimit(1) 
+		    .auditImagesLimit(1)
                     .build();
 
             GetFaceLivenessSessionResultsResponse response = rekognition.getFaceLivenessSessionResults(request);
