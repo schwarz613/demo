@@ -86,7 +86,6 @@ public class FaceLivenessController {
             result.put("status", response.statusAsString());
             result.put("confidence", response.confidence());
             result.put("isLive", response.confidence() != null && response.confidence() > 95);
-	    result.put("ImageReferece", response.referenceImage().bytes());
 		
 	    System.out.println("RESULT: " + result);
 
