@@ -49,6 +49,7 @@ public class FaceLivenessController {
             // Use the correct settings class from AWS SDK v2
             CreateFaceLivenessSessionRequestSettings sessionSettings = CreateFaceLivenessSessionRequestSettings.builder()
                     .outputConfig(outputConfig)
+		    .auditImagesLimit(1)
                     .build();
 
             CreateFaceLivenessSessionRequest request = CreateFaceLivenessSessionRequest.builder()
@@ -77,7 +78,6 @@ public class FaceLivenessController {
         try {
             GetFaceLivenessSessionResultsRequest request = GetFaceLivenessSessionResultsRequest.builder()
                     .sessionId(sessionId)
-		    .auditImagesLimit(1)
                     .build();
 
             GetFaceLivenessSessionResultsResponse response = rekognition.getFaceLivenessSessionResults(request);
