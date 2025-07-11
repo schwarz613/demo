@@ -49,7 +49,6 @@ public class FaceLivenessController {
             // Use the correct settings class from AWS SDK v2
             CreateFaceLivenessSessionRequestSettings sessionSettings = CreateFaceLivenessSessionRequestSettings.builder()
                     .outputConfig(outputConfig)
-		    .auditImagesLimit(1)
                     .build();
 
             CreateFaceLivenessSessionRequest request = CreateFaceLivenessSessionRequest.builder()
@@ -87,6 +86,8 @@ public class FaceLivenessController {
             result.put("status", response.statusAsString());
             result.put("confidence", response.confidence());
             result.put("isLive", response.confidence() != null && response.confidence() > 95);
+	    result.put("ImageReferece", response.referenceImage().bytes());
+		
 	    System.out.println("RESULT: " + result);
 
             return ResponseEntity.ok(result);
