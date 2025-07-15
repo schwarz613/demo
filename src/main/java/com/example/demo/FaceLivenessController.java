@@ -20,9 +20,11 @@ public class FaceLivenessController {
 	
 	private final String accessKey = System.getenv("AWS_ACCESS_KEY_ID");
 	private final String secretKey = System.getenv("AWS_SECRET_ACCESS_KEY");
+	private final String regionName = System.getenv("AWS_REGION");         // new
+    	private final String bucketName = System.getenv("AWS_BUCKET_NAME"); 
 
     private final RekognitionClient rekognition = RekognitionClient.builder()
-            .region(Region.US_EAST_1)                          // your region
+            .region(Region.of(regionName))                          // your region
             .credentialsProvider(
                     StaticCredentialsProvider.create(
                             AwsBasicCredentials.create(
@@ -37,7 +39,6 @@ public class FaceLivenessController {
     public ResponseEntity<Map<String, String>> createSession() {
         try {
             // Replace with your actual bucket name and (optional) prefix
-            String bucketName    = "bucketliveness0731";
             String keyPrefix     = "face-liveness-session/";
 
             // Build the output config with required bucket (and prefix)
