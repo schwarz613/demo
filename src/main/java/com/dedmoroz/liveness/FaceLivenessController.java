@@ -1,9 +1,8 @@
-package com.example.demo;
+package com.dedmoroz.liveness;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +20,7 @@ public class FaceLivenessController {
 	private final String accessKey = System.getenv("AWS_ACCESS_KEY_ID");
 	private final String secretKey = System.getenv("AWS_SECRET_ACCESS_KEY");
 	private final String regionName = System.getenv("AWS_REGION");         // new
-    	private final String bucketName = System.getenv("AWS_BUCKET_NAME"); 
+    private final String bucketName = System.getenv("AWS_BUCKET_NAME");
 
     private final RekognitionClient rekognition = RekognitionClient.builder()
             .region(Region.of(regionName))                          // your region
@@ -61,7 +60,7 @@ public class FaceLivenessController {
 
             Map<String, String> result = new HashMap<>();
             result.put("sessionId", response.sessionId());
-            result.put("region", response.region());
+            result.put("region", regionName);
 			System.out.println(result);
             return ResponseEntity.status(HttpStatus.CREATED).body(result);
 
